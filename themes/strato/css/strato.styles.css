@@ -1,0 +1,32 @@
+/* No files to import found in abstractions/**\/* */
+/* line 1, ../sass/base/_media.scss */
+img, media {
+  max-width: 100%; }
+
+/* line 27, ../sass/strato.styles.scss */
+.l-region--sidebar-first {
+  width: 14.28571%;
+  float: left;
+  margin-right: -100%;
+  margin-left: 0;
+  clear: none; }
+
+/* line 31, ../sass/strato.styles.scss */
+.l-region--sidebar-second {
+  width: 14.28571%;
+  float: right;
+  margin-left: 0;
+  margin-right: 0;
+  clear: none; }
+
+/* line 35, ../sass/strato.styles.scss */
+.l-content {
+  width: 65.71429%;
+  float: left;
+  margin-right: -100%;
+  margin-left: 17.14286%;
+  clear: none; }
+
+/* line 39, ../sass/strato.styles.scss */
+.l-footer {
+  clear: both; }
