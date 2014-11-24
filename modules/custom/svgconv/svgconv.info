@@ -1,0 +1,7 @@
+name = SVG Conversion tool
+description = Lorem ipsum dolor
+package = BorisZaydlin
+core = 7.x
+
+dependencies[] = imagecache_actions
+dependencies[] = imagemagick

@@ -39,3 +39,27 @@
 .l-footer {
 	clear: both;
 }
+
+.tabs li {
+	float: left;
+	padding: 5px 10px;
+	a{
+		background: none;
+		outline: none;
+	}
+}
+
+.buy-hidden .form-submit {
+	display: none;
+}
+
+.btn {
+	display: inline-block;
+	background-color: #e5f1f8;
+	padding: 5px 10px;
+	margin-right: 15px;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
