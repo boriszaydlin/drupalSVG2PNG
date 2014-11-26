@@ -1,7 +1,7 @@
 (function ($) {
 
   $(document).ready(function(){
-  	$( ".tabs" ).tabs();
+  	$( ".quicktabs" ).tabs();
   });
 
 })(jQuery);

@@ -25,7 +25,7 @@ $classes_array: Array of html class attribute values. It is flattened into a str
 */
 ?>
 
-<div class="tabs">
+<div class="quicktabs">
   <ul>
   	<?php
 	foreach($items[0]['styles'] as $key => $value) {?>

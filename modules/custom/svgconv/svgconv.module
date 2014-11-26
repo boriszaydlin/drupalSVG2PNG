@@ -5,30 +5,29 @@
  */
 
 function _svgconv_convert($path, $style, $watermark) {
-	$im = new Imagick();
-	$svg = file_get_contents($path);
-	$im->readImageBlob($svg);
-	$im->setImageFormat("png24");
-	//$watermark = TRUE;
-	if ($watermark) {
-		$watermark = new Imagick();
-		$watermark->readImage(__DIR__ . "/watermark2.png");
-		$im->compositeImage($watermark, imagick::COMPOSITE_OVER, 0, 0);
-		$watermark->clear();
-		$watermark->destroy();
-	}
+  $im = new Imagick();
+  $svg = file_get_contents($path);
+  $im->readImageBlob($svg);
+  $im->setImageFormat("png24");
+  if ($watermark) {
+    $watermark = new Imagick();
+    $watermark->readImage(__DIR__ . "/watermark2.png");
+    $im->compositeImage($watermark, imagick::COMPOSITE_OVER, 0, 0);
+    $watermark->clear();
+    $watermark->destroy();
+  }
     $data = $im->getImageBlob();
     $destination = "public://" . rand(999,9999999) . '.png';
-	$img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
-	$im->clear();
-	$im->destroy();
-	if ($style){
-		$img = theme_image_style(array('style_name'=>$style, 'path'=>$img));
-	}
-	else {
-		$img = theme_image_style(array('style_name'=>'medium', 'path'=>$img));
-	}
-	return $img;
+  $img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
+  $im->clear();
+  $im->destroy();
+  if ($style){
+    $img = theme_image_style(array('style_name'=>$style, 'path'=>$img,'width' => NULL, 'height' => NULL));
+  }
+  else {
+    $img = theme_image_style(array('style_name'=>'medium', 'path'=>$img,'width' => NULL, 'height' => NULL));
+  }
+  return $img;
 }
 
 /*
@@ -36,56 +35,100 @@ function _svgconv_convert($path, $style, $watermark) {
  */
 
 function _svgconv_generate_set($path, $style, $watermark) {
-	if($watermark) return false;
-	
-	$html = array();
-	$arch = array();
-	$tmp = rand(999,9999999);
-	$svg = file_get_contents($path);
-	
-	//GENERATE PNG
-	$im = new Imagick();
-	$im->readImageBlob($svg);
-	$im->setImageFormat("png24");
+  if($watermark) return false;
+  
+  $html = array();
+  $arch = array();
+  $tmp = rand(999,9999999);
+  $svg = file_get_contents($path);
+  
+  //GENERATE PNG
+  $im = new Imagick();
+  $im->readImageBlob($svg);
+  $im->setImageFormat("png24");
     $data = $im->getImageBlob();
     $destination = "public://" . $tmp . '.png';
-	$img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
-	//$im->clear();
-	//$im->destroy();
-	$html['all formats'] = file_create_url($img) . '.tar.gz ';
-	$html['png'] = image_style_url($style, $img);
-	$arch['png'] = drupal_realpath($img);
+  $img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
+  $html['all formats'] = file_create_url($img) . '.tar.gz ';
+  $html['png'] = image_style_url($style, $img);
+  $arch['png'] = drupal_realpath($img);
 
-	//GENERATE SVG
-	$html['svg'] = file_create_url($path);
-	$arch['svg'] = drupal_realpath($path);
-	
-	//GENERATE ICO	
+  //GENERATE SVG
+  $html['svg'] = file_create_url($path);
+  $arch['svg'] = drupal_realpath($path);
+  
+  //GENERATE ICO  
     $destination = "public://" . $tmp . '.tmp.png';
     $im->thumbnailImage(128, 128);
     $data = $im->getImageBlob();
-	$img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
-	exec('icotool -c -o ' . drupal_realpath($img) . '.ico ' . drupal_realpath($img));
-	exec('rm ' . drupal_realpath($img));
-	$html['ico'] = file_create_url($img) . '.ico';
-	$arch['ico'] = drupal_realpath($img) . '.ico';
+  $img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
+  exec('icotool -c -o ' . drupal_realpath($img) . '.ico ' . drupal_realpath($img));
+  exec('rm ' . drupal_realpath($img));
+  $html['ico'] = file_create_url($img) . '.ico';
+  $arch['ico'] = drupal_realpath($img) . '.ico';
 
-	//GENERATE ICNS	
+  //GENERATE ICNS  
     $destination = "public://" . $tmp . '.tmp.png';
-	$img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
-	exec('png2icns ' . drupal_realpath($img) . '.icns ' . drupal_realpath($img));
-	exec('rm ' . drupal_realpath($img));
-	$html['icns'] = file_create_url($img) . '.icns';
-	$arch['icns'] = drupal_realpath($img) . '.icns';
-	
-	
-	//GENERATE ARCHIVE
-	exec('tar czf ' . $arch['png'] . '.tar.gz ' . $arch['png'] . ' ' . $arch['svg'] . ' ' . $arch['ico'] . ' ' . $arch['icns']);
-	unset($arch);	
-	
-	$im->clear();
-	$im->destroy();
-	
-	return $html;
-	
+  $img = file_unmanaged_save_data($data, $destination, $replace = FILE_EXISTS_RENAME);
+  exec('png2icns ' . drupal_realpath($img) . '.icns ' . drupal_realpath($img));
+  exec('rm ' . drupal_realpath($img));
+  $html['icns'] = file_create_url($img) . '.icns';
+  $arch['icns'] = drupal_realpath($img) . '.icns';
+  
+  
+  //GENERATE ARCHIVE
+  exec('tar czf ' . $arch['png'] . '.tar.gz ' . $arch['png'] . ' ' . $arch['svg'] . ' ' . $arch['ico'] . ' ' . $arch['icns']);
+  unset($arch);  
+  
+  $im->clear();
+  $im->destroy();
+  
+  return $html;
+  
+}
+
+
+/*
+ * implements hook_menu()
+ */
+function svgconv_menu() {
+  $items['admin/config/media/svgconv'] = array(
+    'title' => 'SVG converter configuration',
+    'description' => 'SVG converter  settings page',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('svgconv_admin'),
+    'access arguments' => array('administer users'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/*
+ * Settings page
+ */
+function svgconv_admin() {
+  $form = array();
+  $styles = image_styles();
+  foreach($styles as $key => $value) {
+  	$field = 'svgconv_' . $key;
+  	$form[$field] = array(
+    '#type' => 'checkbox', 
+    '#title' => $value['label'],
+    '#default_value' => variable_get($field),
+    );
+  }
+  return system_settings_form($form);
+}
+
+/*
+ * Returns active styles array
+ */
+function _svgconv_activestyles() {
+  $styles = image_styles();
+  $result = array();
+  foreach($styles as $key => $value) {
+  	$field = 'svgconv_' . $key;
+  	if (variable_get($field)) $result[$key] = $value['label'];
+  }
+  return $result;
 }
