@@ -613,7 +613,6 @@ button.ui-button::-moz-focus-inner {
 
 /* line 530, ../sass/base/_jquery_ui.scss */
 .ui-progressbar .ui-progressbar-overlay {
-  background: url("images/animated-overlay.gif");
   height: 100%;
   filter: alpha(opacity=25);
   opacity: 0.25; }
@@ -928,7 +927,7 @@ body .ui-tooltip {
 /* line 799, ../sass/base/_jquery_ui.scss */
 .ui-widget-content {
   border: 1px solid #dddddd;
-  background: white url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+  background: white;
   color: #444444; }
 
 /* line 804, ../sass/base/_jquery_ui.scss */
@@ -938,7 +937,7 @@ body .ui-tooltip {
 /* line 807, ../sass/base/_jquery_ui.scss */
 .ui-widget-header {
   border: 1px solid #dddddd;
-  background: #dddddd url(images/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x;
+  background: #dddddd;
   color: #444444;
   font-weight: bold; }
 
@@ -953,7 +952,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
   border: 1px solid #dddddd;
-  background: #f6f6f6 url(images/ui-bg_highlight-soft_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+  background: #f6f6f6;
   font-weight: bold;
   color: #0073ea; }
 
@@ -972,7 +971,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
   border: 1px solid #0073ea;
-  background: #0073ea url(images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;
+  background: #0073ea;
   font-weight: bold;
   color: #ffffff; }
 
@@ -993,7 +992,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
   border: 1px solid #dddddd;
-  background: white url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
+  background: #ffffff;
   font-weight: bold;
   color: #ff0084; }
 
@@ -1011,7 +1010,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
   border: 1px solid #cccccc;
-  background: white url(images/ui-bg_flat_55_ffffff_40x100.png) 50% 50% repeat-x;
+  background: #ffffff;
   color: #444444; }
 
 /* line 879, ../sass/base/_jquery_ui.scss */
@@ -1025,7 +1024,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
   border: 1px solid #ff0084;
-  background: white url(images/ui-bg_flat_55_ffffff_40x100.png) 50% 50% repeat-x;
+  background: #ffffff;
   color: #222222; }
 
 /* line 891, ../sass/base/_jquery_ui.scss */
@@ -1074,37 +1073,6 @@ body .ui-tooltip {
 .ui-icon {
   width: 16px;
   height: 16px; }
-
-/* line 932, ../sass/base/_jquery_ui.scss */
-.ui-icon,
-.ui-widget-content .ui-icon {
-  background-image: url(images/ui-icons_ff0084_256x240.png); }
-
-/* line 936, ../sass/base/_jquery_ui.scss */
-.ui-widget-header .ui-icon {
-  background-image: url(images/ui-icons_0073ea_256x240.png); }
-
-/* line 939, ../sass/base/_jquery_ui.scss */
-.ui-state-default .ui-icon {
-  background-image: url(images/ui-icons_666666_256x240.png); }
-
-/* line 942, ../sass/base/_jquery_ui.scss */
-.ui-state-hover .ui-icon,
-.ui-state-focus .ui-icon {
-  background-image: url(images/ui-icons_ffffff_256x240.png); }
-
-/* line 946, ../sass/base/_jquery_ui.scss */
-.ui-state-active .ui-icon {
-  background-image: url(images/ui-icons_454545_256x240.png); }
-
-/* line 949, ../sass/base/_jquery_ui.scss */
-.ui-state-highlight .ui-icon {
-  background-image: url(images/ui-icons_0073ea_256x240.png); }
-
-/* line 952, ../sass/base/_jquery_ui.scss */
-.ui-state-error .ui-icon,
-.ui-state-error-text .ui-icon {
-  background-image: url(images/ui-icons_ff0084_256x240.png); }
 
 /* positioning */
 /* line 958, ../sass/base/_jquery_ui.scss */
@@ -1842,7 +1810,7 @@ body .ui-tooltip {
 /* Overlays */
 /* line 1166, ../sass/base/_jquery_ui.scss */
 .ui-widget-overlay {
-  background: #eeeeee url(images/ui-bg_flat_0_eeeeee_40x100.png) 50% 50% repeat-x;
+  background: #eeeeee;
   opacity: .8;
   filter: Alpha(Opacity=80); }
 
@@ -1850,7 +1818,7 @@ body .ui-tooltip {
 .ui-widget-shadow {
   margin: -4px 0 0 -4px;
   padding: 4px;
-  background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+  background: #aaaaaa;
   opacity: .6;
   filter: Alpha(Opacity=60);
   border-radius: 0px; }
